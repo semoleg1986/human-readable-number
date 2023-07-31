@@ -1,4 +1,4 @@
-module.exports = function toReadable (number) {
+
   const basicNumtoStr = {
     0: "zero",
     1: "one",
@@ -29,4 +29,11 @@ module.exports = function toReadable (number) {
     80: "eighty",
     90: "ninety",
   };
-}
+  const basicNumberToString = (number) => {
+    return basicNumtoStr[number]
+  } 
+  console.log(basicNumberToString(30))
+
+
+// module.exports = function toReadable (number) {
+// }
