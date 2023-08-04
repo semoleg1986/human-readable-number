@@ -1,4 +1,4 @@
-
+module.exports = function toReadable (number) {
   const basicNumtoStr = {
     0: "zero",
     1: "one",
@@ -28,12 +28,42 @@
     70: "seventy",
     80: "eighty",
     90: "ninety",
-  };
-  const basicNumberToString = (number) => {
-    return basicNumtoStr[number]
-  } 
-  console.log(basicNumberToString(30))
+  }
+  let str = String(number)
+  let res = ''
 
+  const simpleNumber = (num) => {
+    return basicNumtoStr[num]
+  }
 
-// module.exports = function toReadable (number) {
-// }
+  const lessHundredNumber = (num) => {
+    if (num[1]==0){
+      return basicNumtoStr[num]
+    }
+    if (num < 21) {
+      return simpleNumber(num);
+    }
+    return `${basicNumtoStr[num[0] + 0]} ${simpleNumber(num[1])}`
+  }
+
+  const moreHundredNumber = (num) => {
+    if (num[1] == 0 && num[2] == 0){
+      return `${simpleNumber(num[0])} hundred`
+    }
+    if (num[1] == 0){
+      return `${simpleNumber(num[0])} hundred ${simpleNumber(num[2])}`
+    }
+    return `${simpleNumber(num[0])} hundred ${lessHundredNumber(num[1] + num[2])}`
+  }
+
+    if (number<21){
+      res = simpleNumber(str)
+    }
+    else if (number<100){
+      res = lessHundredNumber(str)
+    }
+    else {
+      res = moreHundredNumber(str)
+    }
+  return res
+}
